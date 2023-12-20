@@ -34,7 +34,7 @@ function generateTetromino() {
   const nameTetro = "O";
   const matrixTetro = TETROMINOES[nameTetro];
 
-  const columnTetro = 5;
+  const columnTetro = 4;
   const rowTetro = 3;
 
   tetromino = {
@@ -65,3 +65,54 @@ function drawTetromino() {
 }
 
 drawTetromino();
+
+function draw() {
+  cells.forEach(function (cell) {
+    cell.removeAttribute("class");
+  });
+  drawTetromino();
+}
+
+document.addEventListener("keydown", onKeyDown);
+
+function onKeyDown(event) {
+  switch (event.key) {
+    case "ArrowDown":
+      moveTetrominoDown();
+      break;
+    case "ArrowLeft":
+      moveTetrominoLeft();
+      break;
+    case "ArrowRight":
+      moveTetrominoRight();
+      break;
+  }
+  draw();
+}
+
+function moveTetrominoDown() {
+  tetromino.row += 1;
+}
+
+function moveTetrominoLeft() {
+    tetromino.column -= 1;
+    if (isOutsideOfGameBoard()) {
+        tetromino.column += 1;
+    }
+}
+
+function moveTetrominoRight() {
+  tetromino.column += 1;
+}
+
+function isOutsideOfGameBoard() {
+    const matrixSize = tetromino.matrix.lenght;
+    for (let row = 0; row < matrixSize; row++) {
+        for (let column = 0; column < matrixSize; column++) {
+            if (tetromino.column + column < 0) {
+                return true;
+            }
+        }
+        
+    }
+}
