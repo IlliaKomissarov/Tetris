@@ -31,7 +31,7 @@ function generatePlayfield() {
 function generateTetromino() {
   const nameTetro = "O";
   const matrixTetro = TETROMINOES[nameTetro];
-  const columnTetro = 5;
+  const columnTetro = 4;
   const rowTetro = 3;
 
   tetromino = {
@@ -88,12 +88,37 @@ function onKeyDown(event) {
 }
 
 function moveTetrominoDown() {
-  tetromino.row += 1;
+    tetromino.row += 1;
+  if (isOutsideOfGameBoard()) {
+    tetromino.row -= 1;
+  }
 }
 
 function moveTetrominoLeft() {
   tetromino.column -= 1;
+  if (isOutsideOfGameBoard()) {
+    tetromino.column += 1;
+  }
 }
 function moveTetrominoRight() {
   tetromino.column += 1;
+  if (isOutsideOfGameBoard()) {
+    tetromino.column -= 1;
+  }
+}
+
+function isOutsideOfGameBoard() {
+  const matrixSize = tetromino.matrix.length;
+  for (let row = 0; row < matrixSize; row += 1) {
+    for (let column = 0; column < matrixSize; column++) {
+      if (
+        tetromino.column + column < 0 ||
+        tetromino.column + column >= PLAYFIELD_COLUMNS ||
+        tetromino.row + row >= playfield.length
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
