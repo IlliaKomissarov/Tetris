@@ -75,10 +75,9 @@ function generateTetromino() {
   const matrixTetro = TETROMINOES[nameTetro];
 
   const columnTetro = Math.floor(
-    (PLAYFIELD_COLUMNS - TETROMINOES[nameTetro].length) / 2
+    PLAYFIELD_COLUMNS / 2 - Math.floor(matrixTetro.length / 2)
   );
-  const rowTetro = 0;
-
+  const rowTetro = 3;
   tetromino = {
     name: nameTetro,
     matrix: matrixTetro,
@@ -210,6 +209,18 @@ function isOutsideOfGameBoard() {
         tetromino.row + row >= playfield.length ||
         tetromino.row + row < 0
       ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function hascollitions() {
+  const matrixsize = tetromino.matrix.length;
+  for (let row = 0; row < matrixsize; row++) {
+    for (let column = 0; column < matrixsize; column++) {
+      if (playfield[tetromino.row + row][tetromino.column + column]) {
         return true;
       }
     }
