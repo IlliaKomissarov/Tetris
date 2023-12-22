@@ -31,4 +31,63 @@ body {
 
 .tetris .O{
     background-color: rgb(216, 239, 0);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(88, 4, 22, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6); 
+}
+
+.tetris .L{
+    background: rgb(33, 162, 202);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(4, 59, 88, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+.tetris .J{
+    background: rgb(186, 177, 79);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(88, 63, 4, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+.tetris .I{
+    background: rgb(50, 92, 244);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(4, 4, 88, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+.tetris .Z{
+    background: rgb(215, 116, 77);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(88, 32, 4, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+.tetris .T{
+    background: rgb(194, 89, 235);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(85, 4, 88, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+
+.tetris .S{
+    background: rgb(62, 191, 101);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(4, 88, 43, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
+}
+.tetris .Q{
+    background: rgb(62, 191, 101);
+    box-shadow:
+        inset 3px 3px 3px rgba(255, 255, 255, 0.213),
+        inset -3px -3px 3px rgba(4, 88, 43, 0.532),
+        12px 12px 24px rgba(0, 0, 0, 0.6);     
 }
