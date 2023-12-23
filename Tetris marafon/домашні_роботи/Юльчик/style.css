@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+}
+
+body{
+    background: linear-gradient(0deg, rgba(254,127,45,1) 5%, rgba(206,255,26,1) 35%, rgba(27,231,255,1) 65%, rgba(254,100,163,1) 95%);
+    height: 100vh;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.tetris{
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    grid-template-rows: repeat(20, auto);
+    background-color: #0a1128;
+    border-radius: 1vh;
+    padding: 0.5vh;
+    box-shadow: rgba(0, 0, 0, 0.39) 0px 29px 58px, rgba(0, 0, 0, 0.363) 0px 15px 12px;
+}
+
+.tetris div{
+    box-shadow: inset 2px 2px 2px rgba(59, 50, 104, 0.527), 
+    inset rgba(255, 255, 255, 0.062) -2px -2px 2px;
+    border-radius: 0.6vh;
+    height: min(4vh, 7vw);
+    width: min(4vh, 7vw);
+}
+
+.tetris .O{
+    background-color: #CEFF1A;
+}
+
+.tetris .L{
+    background-color: #FE7F2D;
+}
+
+.tetris .I{
+    background-color: #FE64A3;
+}
+
+.tetris .T{
+    background-color: #7F2982;
+}
+
+.tetris .Z{
+    background-color: #06D6A0;
+}
+
+.tetris .X{
+    background-color: #FDCA40;
+}
+
+.tetris .D{
+    background-color: #1BE7FF;
+}
+
+.tetris .B{
+    background-color: #E84855;
+}

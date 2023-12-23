@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Онлайн-гра "Тетріс"</title>
+  <link rel="stylesheet" href="./style/reset.css">
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+  <div class="main_page">
+    <header class="header">
+      <div class="header_wrap">
+        <a class="logo" href="/">ВБ</a>
+        <h1 class="title"><span class="title_letter">О</span><span class="title_letter">н</span><span class="title_letter">л</span><span class="title_letter">а</span><span class="title_letter">й</span><span class="title_letter">н</span><span class="title_letter">-</span><span class="title_letter">г</span><span class="title_letter">р</span><span class="title_letter">а</span> <span class="title_letter">'</span><span class="title_letter">Т</span><span class="title_letter">е</span><span class="title_letter">т</span><span class="title_letter">р</span><span class="title_letter">і</span><span class="title_letter">с</span><span class="title_letter">'</span></h1>
+      </div>
+    </header>
+    <main class="main">
+      <div class="game">
+        <div class="root"></div>
+        <div id="btns" class="btns">
+          <button data-id="left" class="btn btn-left" type="button">⇦</button>
+          <button data-id="right" class="btn btn-right" type="button">⇨</button>
+          <button data-id="down" class="btn btn-down" type="button">⇩</button>
+          <button data-id="rotate" class="btn btn-rotate" type="button">↻</button>
+        </div>
+      </div>
+    </main>
+    <footer>footer</footer>
+  </div>
+  <script type="module" src="./code/index.js"></script>
+</body>
+</html>

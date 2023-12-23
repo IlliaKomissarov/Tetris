@@ -1,0 +1,79 @@
+
+.key_list_item:nth-child(1){
+    -webkit-animation: my-animation 3s;
+        animation: my-animation 3s;
+        margin-top: 9rem;
+}
+.key_list_item:nth-child(1) .key {
+    color: rgb(255, 0, 0);
+}
+.key_list_item:nth-child(2){
+    -webkit-animation: my-animation 2.3s;
+        animation: my-animation 2.3s;
+        margin-top: 7.5rem;
+}
+.key_list_item:nth-child(2) .key {
+    color: rgb(255, 123, 0);
+}
+.key_list_item:nth-child(3){
+    margin-top: 6rem;
+    -webkit-animation: my-animation 2s;
+        animation: my-animation 2s;
+}
+.key_list_item:nth-child(3) .key {
+    color: rgb(255, 247, 0);
+}
+
+.key_list_item:nth-child(4) {
+    margin-top: 4.5rem;
+    -webkit-animation: my-animation 2.5s;
+    animation: my-animation 2.5s;
+}
+.key_list_item:nth-child(4) .key {
+    color: rgb(119, 255, 0);
+}
+.key_list_item:nth-child(5){
+    margin-top: 3rem;
+    -webkit-animation: my-animation 3s;
+        animation: my-animation 3s;
+}
+.key_list_item:nth-child(5) .key {
+    color: rgb(0, 238, 255);
+}
+.key_list_item:nth-child(6){
+    margin-top: 1.5rem;
+    -webkit-animation: my-animation 3.5s;
+        animation: my-animation 3.5s;
+}
+.key_list_item:nth-child(6) .key {
+    color: rgb(3, 44, 179);
+}
+.key_list_item:nth-child(7){
+    margin-top: 0;
+    -webkit-animation: my-animation 2.3s;
+        animation: my-animation 2.3s;
+}
+.key_list_item:nth-child(7) .key {
+    color: rgb(138, 11, 228);
+}
+
+@keyframes my-animation {
+  0% {
+    transform: translateY(-1220%) translateX(-50vw) rotate(90deg)
+  }
+  /* 25% {
+    transform: translateY(40vh) rotate(90deg) translateX(-50vw)
+  } */
+  50% {
+    transform: translateY(50vh) translateX(-50vw) rotate(180deg)
+  }
+  /* 75% {
+    transform: translateY(60vh) translateX(-50vw)
+  } */
+  80% {
+    transform: translateY(-4rem)
+  }
+  100% {
+    transform: translateY(0rem)
+  }
+}

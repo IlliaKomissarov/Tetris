@@ -1,3 +1,16 @@
+// ДЗ №1
+// 1. Додати інші фігури
+// 2. Стилізувати нові фігури на свій погляд
+// 3. Додати функцію рандому котра буде видавати випадкову фігуру
+// 4. Ценрування фігури коли вона з'являється
+// 5. Додати функцію ранромних кольорів для кожної нової фігури
+
+// ДЗ №2
+// 1. Поставити const rowTetro = -2; прописати код щоб працювало коректно
+// 2. Зверстати поле для розрахунку балів гри
+// 3. Прописати логіку і код розрахунку балів гри (1 ряд = 10; 2 ряди = 30; 3 ряди = 50; 4 = 100)
+// 4. Реалізувати самостійний рух фігур до низу
+
 const PLAYFIELD_COLUMNS = 10;
 const PLAYFIELD_ROWS = 20;
 
@@ -14,9 +27,9 @@ const TETROMINOES = {
     [0, 0, 0],
   ],
   J: [
-    [1, 0, 0],
-    [1, 1, 1],
-    [0, 0, 0],
+    [0, 1, 1],
+    [0, 1, 0],
+    [0, 1, 0],
   ],
   S: [
     [0, 1, 1],
@@ -43,7 +56,11 @@ const TETROMINOES = {
 
 let playfield;
 let tetromino;
-let lastName;
+
+function getRandomElement(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
 
 function convertPositionToIndex(row, column) {
   return row * PLAYFIELD_COLUMNS + column;
@@ -58,42 +75,35 @@ function generatePlayfield() {
   playfield = new Array(PLAYFIELD_ROWS)
     .fill()
     .map(() => new Array(PLAYFIELD_COLUMNS).fill(0));
+  // console.log(playfield);
 }
-
-function tetrominoRandom() {
-  let randName;
-  do {
-    randName =
-      TETROMINO_NAMES[Math.floor(Math.random() * TETROMINO_NAMES.length)];
-  } while (randName == lastName);
-  lastName = randName;
-  return randName;
-}
-
 function generateTetromino() {
-  const nameTetro = tetrominoRandom();
+  const nameTetro = getRandomElement(TETROMINO_NAMES);
   const matrixTetro = TETROMINOES[nameTetro];
 
-  const columnTetro = Math.floor(
-    PLAYFIELD_COLUMNS / 2 - Math.floor(matrixTetro.length / 2)
-  );
   const rowTetro = 3;
+  // const rowTetro = -2;
+  const columnTetro = Math.floor(
+    PLAYFIELD_COLUMNS / 2 - matrixTetro.length / 2
+  );
+
   tetromino = {
     name: nameTetro,
     matrix: matrixTetro,
-    column: columnTetro,
     row: rowTetro,
+    column: columnTetro,
   };
 }
 
 generatePlayfield();
 generateTetromino();
-
 const cells = document.querySelectorAll(".tetris div");
+// console.log(cells);
 
-function drawPlayfield() {
+function drawPlayField() {
   for (let row = 0; row < PLAYFIELD_ROWS; row++) {
     for (let column = 0; column < PLAYFIELD_COLUMNS; column++) {
+      // if(playfield[row][column] == 0) { continue };
       const name = playfield[row][column];
       const cellIndex = convertPositionToIndex(row, column);
       cells[cellIndex].classList.add(name);
@@ -107,30 +117,111 @@ function drawTetromino() {
 
   for (let row = 0; row < tetrominoMatrixSize; row++) {
     for (let column = 0; column < tetrominoMatrixSize; column++) {
-      if (tetromino.matrix[row][column]) {
-        const cellIndex = convertPositionToIndex(
-          tetromino.row + row,
-          tetromino.column + column
-        );
-        cells[cellIndex].classList.add(name);
+      // cells[cellIndex].innerHTML = array[row][column];
+      if (tetromino.matrix[row][column] == 0) {
+        continue;
       }
+      const cellIndex = convertPositionToIndex(
+        tetromino.row + row,
+        tetromino.column + column
+      );
+      cells[cellIndex].classList.add(name);
     }
   }
 }
-
+// let array = [
+//     [1,2,3],
+//     [4,5,6],
+//     [7,8,9],
+// ]
 drawTetromino();
 
 function draw() {
   cells.forEach(function (cell) {
     cell.removeAttribute("class");
   });
-  drawPlayfield();
+  drawPlayField();
   drawTetromino();
+  console.table(playfield);
+}
+
+function placeTetromino() {
+  const matrixSize = tetromino.matrix.length;
+  for (let row = 0; row < matrixSize; row++) {
+    for (let column = 0; column < matrixSize; column++) {
+      if (!tetromino.matrix[row][column]) continue;
+
+      playfield[tetromino.row + row][tetromino.column + column] =
+        tetromino.name;
+    }
+  }
+  const filledRows = findFilledRows();
+  console.log(filledRows);
+  removeFillRows(filledRows);
+  generateTetromino();
+}
+
+function removeFillRows(filledRows) {
+  // filledRows.forEach(row => {
+  //     dropRowsAbove(row);
+  // })
+
+  for (let i = 0; i < filledRows.length; i++) {
+    const row = filledRows[i];
+    dropRowsAbove(row);
+  }
+}
+
+function dropRowsAbove(rowDelete) {
+  for (let row = rowDelete; row > 0; row--) {
+    playfield[row] = playfield[row - 1];
+  }
+
+  playfield[0] = new Array(PLAYFIELD_COLUMNS).fill(0);
+}
+
+function findFilledRows() {
+  const filledRows = [];
+  for (let row = 0; row < PLAYFIELD_ROWS; row++) {
+    let filledColumns = 0;
+    for (let column = 0; column < PLAYFIELD_COLUMNS; column++) {
+      if (playfield[row][column] != 0) {
+        filledColumns++;
+      }
+    }
+    if (PLAYFIELD_COLUMNS == filledColumns) {
+      filledRows.push(row);
+    }
+  }
+  return filledRows;
+}
+
+function rotateTetromino() {
+  const oldMatrix = tetromino.matrix;
+  const rotatedMatrix = rotateMatrix(tetromino.matrix);
+  // array = rotateMatrix(array);
+  tetromino.matrix = rotatedMatrix;
+  if (isValid()) {
+    tetromino.matrix = oldMatrix;
+  }
+}
+
+function rotateMatrix(matrixTetromino) {
+  const N = matrixTetromino.length;
+  const rotateMatrix = [];
+  for (let i = 0; i < N; i++) {
+    rotateMatrix[i] = [];
+    for (let j = 0; j < N; j++) {
+      rotateMatrix[i][j] = matrixTetromino[N - j - 1][i];
+    }
+  }
+  return rotateMatrix;
 }
 
 document.addEventListener("keydown", onKeyDown);
 
 function onKeyDown(event) {
+  // console.log(event);
   switch (event.key) {
     case "ArrowUp":
       rotateTetromino();
@@ -144,33 +235,8 @@ function onKeyDown(event) {
     case "ArrowRight":
       moveTetrominoRight();
       break;
-
-    default:
-      break;
   }
   draw();
-}
-
-function rotateTetromino() {
-  const tetroSize = tetromino.matrix.length;
-  const tempMatrix = new Array(tetroSize)
-    .fill()
-    .map(() => new Array(tetroSize).fill(0));
-  for (let row = 0; row < tetroSize; row++) {
-    for (let column = 0; column < tetroSize; column++) {
-      tempMatrix[row][column] = tetromino.matrix[row][column];
-    }
-  }
-
-  for (let row = 0; row < tetroSize; row++) {
-    for (let column = 0; column < tetroSize; column++) {
-      tetromino.matrix[row][column] = tempMatrix[tetroSize - column - 1][row];
-    }
-  }
-
-  if (isOutsideOfGameBoard()) {
-    tetromino.matrix = tempMatrix;
-  }
 }
 
 function moveTetrominoDown() {
@@ -180,14 +246,12 @@ function moveTetrominoDown() {
     placeTetromino();
   }
 }
-
 function moveTetrominoLeft() {
   tetromino.column -= 1;
   if (isValid()) {
     tetromino.column += 1;
   }
 }
-
 function moveTetrominoRight() {
   tetromino.column += 1;
   if (isValid()) {
@@ -202,6 +266,7 @@ function isValid() {
       if (!tetromino.matrix[row][column]) {
         continue;
       }
+      // if(tetromino.matrix[row][column] == 0){ continue; }
       if (isOutsideOfGameBoard(row, column)) {
         return true;
       }
@@ -217,24 +282,10 @@ function isOutsideOfGameBoard(row, column) {
   return (
     tetromino.column + column < 0 ||
     tetromino.column + column >= PLAYFIELD_COLUMNS ||
-    tetromino.row + row >= playfield.length ||
     tetromino.row + row >= playfield.length
   );
 }
 
 function hasCollisions(row, column) {
   return playfield[tetromino.row + row][tetromino.column + column];
-}
-
-function placeTetromino() {
-  const matrixSize = tetromino.matrix.length;
-  for (let row = 0; row < matrixSize; row++) {
-    for (let column = 0; column < matrixSize; column++) {
-      if (!tetromino.matrix[row][column]) continue;
-
-      playfield[tetromino.row + row][tetromino.column + column] =
-        tetromino.name;
-    }
-  }
-  generateTetromino();
 }

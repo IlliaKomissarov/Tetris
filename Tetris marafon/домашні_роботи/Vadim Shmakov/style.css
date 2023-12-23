@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(90deg, rgb(0 255 90 / 80%), rgb(0 17 255) 70.71%);
+    height: 100vh;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tetris {
+    background-color: blue;
+    padding: 0.5vh;
+    border-radius: 0.5vh;
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    grid-template-rows: repeat(20, auto);
+}
+
+.tetris div {
+    height: min(4vh, 7vw);
+    width: min(4vh, 7vw);
+    background-color: rgba(97, 75, 75, 0.205);
+    border-radius: 0.3vh;
+    box-shadow: inset 1px 1px 1px rgb(243 243 243 / 25%),
+        inset -1px -1px 1px rgb(243 243 243 / 25%);
+}
+
+.tetris .yellow {
+    background: yellow;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .green {
+    background: green;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .red {
+    background: red;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .orange {
+    background: orange;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .turquoise {
+    background: turquoise;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .brown {
+    background: brown;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
+
+.tetris .purple {
+    background: purple;
+    box-shadow: inset 2px 2px 2px rgb(128 128 128 / 25%),
+        inset -2px -2px 2px rgb(22 87 217 / 25%);
+}
