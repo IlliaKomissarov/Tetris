@@ -90,7 +90,6 @@ generatePlayfield();
 generateTetromino();
 
 const cells = document.querySelectorAll(".tetris div");
-console.log(cells);
 
 function drawPlayfield() {
   for (let row = 0; row < PLAYFIELD_ROWS; row++) {
@@ -176,7 +175,7 @@ function rotateTetromino() {
 
 function moveTetrominoDown() {
   tetromino.row += 1;
-  if (isOutsideOfGameBoard()) {
+  if (isValid()) {
     tetromino.row -= 1;
     placeTetromino();
   }
@@ -184,31 +183,29 @@ function moveTetrominoDown() {
 
 function moveTetrominoLeft() {
   tetromino.column -= 1;
-  if (isOutsideOfGameBoard()) {
+  if (isValid()) {
     tetromino.column += 1;
   }
 }
 
 function moveTetrominoRight() {
   tetromino.column += 1;
-  if (isOutsideOfGameBoard()) {
+  if (isValid()) {
     tetromino.column -= 1;
   }
 }
 
-function isOutsideOfGameBoard() {
+function isValid() {
   const matrixSize = tetromino.matrix.length;
   for (let row = 0; row < matrixSize; row++) {
     for (let column = 0; column < matrixSize; column++) {
       if (!tetromino.matrix[row][column]) {
         continue;
       }
-      if (
-        tetromino.column + column < 0 ||
-        tetromino.column + column >= PLAYFIELD_COLUMNS ||
-        tetromino.row + row >= playfield.length ||
-        tetromino.row + row < 0
-      ) {
+      if (isOutsideOfGameBoard(row, column)) {
+        return true;
+      }
+      if (hasCollisions(row, column)) {
         return true;
       }
     }
@@ -216,16 +213,17 @@ function isOutsideOfGameBoard() {
   return false;
 }
 
-function hascollitions() {
-  const matrixsize = tetromino.matrix.length;
-  for (let row = 0; row < matrixsize; row++) {
-    for (let column = 0; column < matrixsize; column++) {
-      if (playfield[tetromino.row + row][tetromino.column + column]) {
-        return true;
-      }
-    }
-  }
-  return false;
+function isOutsideOfGameBoard(row, column) {
+  return (
+    tetromino.column + column < 0 ||
+    tetromino.column + column >= PLAYFIELD_COLUMNS ||
+    tetromino.row + row >= playfield.length ||
+    tetromino.row + row >= playfield.length
+  );
+}
+
+function hasCollisions(row, column) {
+  return playfield[tetromino.row + row][tetromino.column + column];
 }
 
 function placeTetromino() {
