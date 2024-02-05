@@ -134,22 +134,20 @@ body {
 }
 
 .music_button {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #4CAF50; 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.music_button:hover {
-    background-color: #45a049; 
-}
+    .music_button:hover {
+        background-color: #45a049; 
+    }
 
-.music_button:active,
-.music_button:focus {
-    background-color: red;
-    outline: none; /* Вилучає контур в фокусі (для додаткового стилю) */
-}
+    .music_button.active {
+        background-color: red;
+    }
