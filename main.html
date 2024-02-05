@@ -18,6 +18,31 @@
     <div class="game-over">
         <button class="button"><span><a href="./main.html" style="text-decoration: none; color: white;">Restart?</a> </span></button>
     </div>
+    <audio id="backgroundMusic" loop>
+      <source
+        src="music/2020-03-22_-_8_Bit_Surf_-_FesliyanStudios.com_-_David_Renda.mp3"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <button id="toggleMusic" class="music_button">
+      <span>Music</span>
+    </button>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var music = document.getElementById("backgroundMusic");
+        var toggleButton = document.getElementById("toggleMusic");
+
+        music.play();
+
+        toggleButton.addEventListener("click", function () {
+          if (music.paused) {
+            music.play();
+          } else {
+            music.pause();
+          }
+        });
+      });
+    </script>
 
     <script type="module" src="main.js"></script>
 </body>

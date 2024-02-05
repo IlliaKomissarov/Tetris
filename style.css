@@ -132,3 +132,19 @@ body {
   opacity: 1;
   right: 0;
 }
+
+.music_button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Плавний перехід для зміни кольору */
+}
+
+.music_button:active {
+    background-color: #FF0000; /* Червоний колір при натисканні */
+}

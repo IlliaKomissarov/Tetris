@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tetris</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
     <div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h3 class="animate-charcter">Tetris</h3>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="animate-charcter">Tetris</h3>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<button class="button"><span><a href="./main.html" style="text-decoration: none; color: white;">Play now!</a> </span></button>
-</body>
+    <button class="button">
+      <span
+        ><a href="./main.html" style="text-decoration: none; color: white"
+          >Play now!</a
+        >
+      </span>
+    </button>
+    <audio id="backgroundMusic" loop>
+      <source
+        src="music/2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3"
+        type="audio/mp3"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <button id="toggleMusic" class="button">
+      <span>Music</span>
+    </button>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var music = document.getElementById("backgroundMusic");
+        var toggleButton = document.getElementById("toggleMusic");
+
+        // Почати грати музику при завантаженні сторінки
+        music.play();
+
+        toggleButton.addEventListener("click", function () {
+          if (music.paused) {
+            music.play();
+          } else {
+            music.pause();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
