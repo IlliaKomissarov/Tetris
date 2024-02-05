@@ -148,6 +148,8 @@ body {
     background-color: #45a049; 
 }
 
-.music_button.red {
-    background-color: #FF0000; 
+.music_button:active,
+.music_button:focus {
+    background-color: red;
+    outline: none; /* Вилучає контур в фокусі (для додаткового стилю) */
 }
