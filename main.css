@@ -40,8 +40,6 @@ body {
   }
 }
 
-
-
 .button {
   border-radius: 4px;
   background-color: #f4511e;
@@ -80,3 +78,22 @@ body {
   opacity: 1;
   right: 0;
 }
+
+.music_button {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #4CAF50; 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .music_button:hover {
+        background-color: #45a049; 
+    }
+
+    .music_button.active {
+        background-color: red;
+    }

@@ -24,11 +24,10 @@
     <audio id="backgroundMusic" loop>
       <source
         src="music/2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3"
-        type="audio/mp3"
       />
       Your browser does not support the audio element.
     </audio>
-    <button id="toggleMusic" class="button">
+    <button id="toggleMusic" class="music_button">
       <span>Music</span>
     </button>
     <script>
@@ -36,7 +35,6 @@
         var music = document.getElementById("backgroundMusic");
         var toggleButton = document.getElementById("toggleMusic");
 
-        // Почати грати музику при завантаженні сторінки
         music.play();
 
         toggleButton.addEventListener("click", function () {
@@ -45,6 +43,10 @@
           } else {
             music.pause();
           }
+        });
+
+        toggleButton.addEventListener("click", function () {
+          this.classList.toggle("active");
         });
       });
     </script>
