@@ -14,9 +14,9 @@
         </div>
       </div>
     </div>
-    <button class="button">
-      <span
-        ><a href="./main.html" style="text-decoration: none; color: white"
+    <button class="button" id="playButton">
+      <span>
+        <a href="./main.html" style="text-decoration: none; color: white"
           >Play now!</a
         >
       </span>
@@ -24,6 +24,7 @@
     <audio id="backgroundMusic" loop>
       <source
         src="music/2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3"
+        type="audio/mp3"
       />
       Your browser does not support the audio element.
     </audio>
@@ -34,8 +35,11 @@
       document.addEventListener("DOMContentLoaded", function () {
         var music = document.getElementById("backgroundMusic");
         var toggleButton = document.getElementById("toggleMusic");
+        var playButton = document.getElementById("playButton");
 
-        music.play();
+        music.addEventListener("canplaythrough", function () {
+          // music.play();
+        });
 
         toggleButton.addEventListener("click", function () {
           if (music.paused) {
@@ -43,10 +47,11 @@
           } else {
             music.pause();
           }
+          this.classList.toggle("active");
         });
 
-        toggleButton.addEventListener("click", function () {
-          this.classList.toggle("active");
+        playButton.addEventListener("click", function () {
+          music.play();
         });
       });
     </script>
