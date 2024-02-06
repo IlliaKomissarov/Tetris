@@ -31,6 +31,19 @@
       <span>Music</span>
     </button>
     <script>
+        function show_loader() {
+        var img = document.createElement("img");
+        img.src = "https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif";
+        img.className = "loader";
+        img.id = "image";
+        document.body.appendChild(img);
+    }
+    show_loader();
+
+    setTimeout(function () {
+        document.getElementById("image").classList.add("loaderOut");
+    }, 900);
+    
       document.addEventListener("DOMContentLoaded", function () {
         var music = document.getElementById("backgroundMusic");
         var toggleButton = document.getElementById("toggleMusic");
